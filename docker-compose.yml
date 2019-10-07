@@ -1,0 +1,25 @@
+version: "3.7"
+services:
+  alapantheon:
+    build: ./alapantheon
+    image: alapantheon:last
+    volumes:
+      - "./alapantheon/alastria:/root/alastria"
+#    extra_hosts:
+#      - "localhost:15.236.0.91"
+    ports:
+      - "21000:21000"
+    command: ["--config-file=/root/alastria/config/config.toml", "--p2p-port=21000"]
+    container_name: alap
+  accesspoint:
+    build: ./accesspoint
+    image: accesspoint:last
+#    depends_on:
+#      - alaquorum
+    volumes:
+      - "./accesspoint/nginxconf:/etc/nginx"
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+      - "22000:22000"
+    container_name: accp

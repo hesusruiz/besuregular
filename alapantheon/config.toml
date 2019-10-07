@@ -1,0 +1,62 @@
+# Config file for Pantheon as a Regular node in Alastria RedT as Docker container
+
+# The Alastria RedT network-id
+network-id=83584648538
+
+# Bootnodes. For the moment, specified statically. Should refresh on each start
+bootnodes=[
+"enode://6423d8a5756a6b24fea8ceff80c76f45ebb86daa620fd3f741a70e91745b45068ba78a3acf4c72c82e25afc567d8ebb78e2677a1a5fe8079095f2ed8eb8911d5@18.203.183.82:21000",
+"enode://aa91afd0125964d10563b89ef9d118b96c38102ec231868b40612630ad539f545c9a7dc2df132ab26292625210e7c0b5568baaa4db3bf9557ca5fdbb62e56988@40.118.26.201:21000",
+"enode://0b3645fedc545715836376937ed2be2293167ada3a59ae4f8cc1045ebde19ba442e44dd5b152c6eed9444b0dad3425d0a403485c10f7dd4ff33148bae08fde26@40.85.130.229:21000",
+"enode://ec816cd01c4b4afc8b7e75b823817bd0b36d1672a42839544a57a312a5c04ab12a3d96a3957f2638a3fee52d10203e6d3351a48b245caea9469f020007fa2d18@54.72.163.31:21000",
+"enode://623d6f2228378358c0bcae8e2087b5bd6207c4b9a048cd2d9878e4bed61e6af67a3ee30ab4692d226b3280211f4d038c818ccf4253a11cd452db8a6612889022@51.83.79.100:21000"
+]
+
+# The data-dir path. Has to be mounted externally to the container
+data-path="/root/alastria/data"
+
+# Only connect to the boot nodes
+discovery-enabled=false
+
+# Path to the custom genesis file
+genesis-file="/root/alastria/config/genesis.json" 
+
+# Allow all hosts to access JSON-RPC API. Restrictions will be enforced by Accesspoint
+host-whitelist=["*"]
+
+# Private key file of the node
+node-private-key-file="/root/alastria/config/nodekey"
+
+# The P2P network configuration
+p2p-enabled=true
+p2p-host="15.236.0.91"
+p2p-port=21000
+max-peers=25
+
+nat-method="upnp"
+
+# Use the permissions file mechanism, to connect with a Quorum network
+permissions-nodes-config-file-enabled=true
+permissions-nodes-config-file="/root/alastria/config/permissions_config.toml"
+
+# Disable privacy (Orion)
+privacy-enabled=false
+
+# JSON-RPC over HTTP configuration
+rpc-http-enabled=true
+rpc-http-host="0.0.0.0"
+rpc-http-port=22000
+rpc-http-api=["ADMIN","ETH","NET","WEB3","IBFT","PERM","DEBUG","MINER","EEA","PRIV","TXPOOL"]
+
+# JSON-RPC over Websockets configuration
+rpc-ws-enabled=true
+rpc-ws-host="0.0.0.0"
+rpc-ws-port=22001
+rpc-ws-api=["ADMIN","ETH","NET","WEB3","IBFT","PERM","DEBUG","MINER","EEA","PRIV","TXPOOL"]
+
+# Logging level
+logging="DEBUG"
+
+# Use the fast syncmode, to start faster
+sync-mode="FAST"
+fast-sync-min-peers=1
